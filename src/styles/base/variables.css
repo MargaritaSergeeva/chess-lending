@@ -1,0 +1,29 @@
+:root {
+  --color-page-bg: #e9ded4;
+  --color-surface: #f6f1e8;
+  --color-text-primary: #313131;
+  --color-text-secondary: #595653;
+  --color-text-inverse: #ffffff;
+  --color-accent: #fbce51;
+  --color-button-dark: #1f1f1f;
+  --color-button-dark-hover: #fbce51;
+  --color-button-light-border: #1f1f1f;
+  --color-button-light-hover: #1f1f1f;
+  --color-button-link: #1f1f1f;
+  --color-button-link-hover: #ffffff;
+
+  --container-max-width: 1366px;
+  --container-padding-inline: 1rem;
+  --container-padding-inline-desktop: 4.5rem;
+
+  --hero-mobile-min-height: 48.25rem;
+  --hero-desktop-min-height: 43.75rem;
+  --hero-overlay-desktop-width: 101.6875rem;
+  --hero-overlay-mobile-height: 25.6875rem;
+
+  --button-hero-inline-size: 16.5rem;
+  --button-radius-pill: 624.9375rem;
+  --button-border-width: 0.125rem;
+  --transition-duration: 220ms;
+  --transition-easing: ease;
+}

@@ -1,0 +1,24 @@
+.page {
+  overflow-x: hidden;
+}
+
+.page__scale-wrap {
+  inline-size: 100%;
+  overflow: clip;
+}
+
+.page__scale-body {
+  inline-size: 100%;
+}
+
+@media (max-width: 23.4375rem) {
+  .page__scale-wrap {
+    block-size: calc(var(--hero-mobile-min-height) * 100vw / 375);
+  }
+
+  .page__scale-body {
+    inline-size: 23.4375rem;
+    transform: scale(calc(100vw / 375));
+    transform-origin: top left;
+  }
+}
