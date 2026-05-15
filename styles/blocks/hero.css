@@ -14,9 +14,11 @@
 .hero::after {
   content: "";
   position: absolute;
-  block-size: 100%;
-  inset-inline: 0;
-  inset-block-end: 0;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-image: url("../../assets/images/decor/background-chess-mob.svg");
   background-position: center bottom;
   background-repeat: no-repeat;
@@ -30,35 +32,35 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  padding-block-start: 1.125rem;
-  padding-block-end: 19.5rem;
+  padding-top: 1.125rem;
+  padding-bottom: 19.5rem;
 }
 
 .hero__brand {
-  inline-size: 20.9375rem;
+  width: 20.9375rem;
 }
 
 .hero__brand-logo {
-  inline-size: 13.3125rem;
-  block-size: auto;
+  width: 13.3125rem;
+  height: auto;
 }
 
 .hero__content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-block-start: 2.5rem;
-  inline-size: 100%;
-  max-inline-size: 30rem;
+  margin-top: 2.5rem;
+  width: 100%;
+  max-width: 30rem;
 }
 
 .hero__title {
-  inline-size: 100%;
+  width: 100%;
   font-family: var(--font-heading);
   font-weight: 400;
   text-transform: uppercase;
   color: var(--color-text-primary);
-  max-inline-size: 20.9375rem;
+  max-width: 20.9375rem;
   font-size: 2.25rem;
   line-height: 1.1;
   text-wrap: balance;
@@ -77,8 +79,8 @@
 }
 
 .hero__description {
-  max-inline-size: 30rem;
-  margin-block-start: 1.5rem;
+  max-width: 30rem;
+  margin-top: 1.5rem;
   color: var(--color-text-primary);
   font-size: 1.125rem;
   line-height: 1.3;
@@ -88,8 +90,8 @@
 .hero__actions {
   display: grid;
   gap: 0.875rem;
-  inline-size: 100%;
-  margin-block-start: 1.875rem;
+  width: 100%;
+  margin-top: 1.875rem;
 }
 
 @media (min-width: 32rem) {
@@ -109,10 +111,10 @@
   }
 
   .hero::after {
-    inset-inline-start: 50%;
-    inset-block-start: 0;
-    inline-size: min(var(--hero-overlay-desktop-width), 119.1069vw);
-    block-size: 100%;
+    left: 50%;
+    top: 0;
+    width: min(var(--hero-overlay-desktop-width), 119.1069vw);
+    height: 100%;
     background-position: center bottom -3.125rem;
     background-repeat: no-repeat;
     background-size: 100% auto;
@@ -122,23 +124,23 @@
   .hero__container {
     display: grid;
     align-content: start;
-    padding-block-start: 1.625rem;
-    padding-block-end: 8.3rem;
+    padding-top: 1.625rem;
+    padding-bottom: 8.3rem;
   }
 
   .hero__brand-logo {
-    inline-size: 15.375rem;
+    width: 15.375rem;
   }
 
   .hero__content {
-    max-inline-size: 33.875rem;
-    margin-block-start: 3.880rem;
+    max-width: 33.875rem;
+    margin-top: 3.880rem;
   }
 
   .hero__title {
     display: flex;
     flex-direction: column;
-    max-inline-size: 100%;
+    max-width: 100%;
     font-size: clamp(3.25rem, 1.7515rem + 2.3419vw, 3.75rem);
     line-height: 1.1;
     letter-spacing: 0.02em;
@@ -146,8 +148,8 @@
   }
 
   .hero__description {
-    max-inline-size: 33.875rem;
-    margin-block-start: 1.5rem;
+    max-width: 33.875rem;
+    margin-top: 1.5rem;
     text-align: center;
     font-size: 1.125rem;
     line-height: 1.3;
@@ -158,7 +160,7 @@
   .hero__actions {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
-    inline-size: max-content;
-    margin-block-start: 2.5rem;
+    width: max-content;
+    margin-top: 2.5rem;
   }
 }

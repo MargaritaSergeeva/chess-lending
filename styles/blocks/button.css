@@ -2,9 +2,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-block-size: 2.9375rem;
-  padding-block: 0.75rem;
-  padding-inline: 1.125rem;
+  min-height: 2.9375rem;
+  padding: 0.75rem 1.125rem;
   border: var(--button-border-width) solid transparent;
   border-radius: var(--button-radius-pill);
   color: var(--color-button-link);
@@ -21,7 +20,7 @@
 }
 
 .button--size-hero {
-  inline-size: 100%;
+  width: 100%;
 }
 
 .button--theme-dark {
@@ -49,8 +48,9 @@
 
 @media (min-width: 81rem) {
   .button--size-hero {
-    inline-size: var(--button-hero-inline-size);
-    min-block-size: 4.5rem;
-    padding-inline: 3.2rem;
+    width: var(--button-hero-inline-size);
+    min-height: 4.5rem;
+    padding-left: 3.2rem;
+    padding-right: 3.2rem;
   }
 }
