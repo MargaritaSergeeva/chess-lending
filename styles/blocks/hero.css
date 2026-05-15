@@ -18,9 +18,9 @@
   inset-inline: 0;
   inset-block-end: 0;
   background-image: url("../../assets/images/decor/background-chess-mob.svg");
-  background-position: center 1.5625rem;
+  background-position: center bottom;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% auto;
   pointer-events: none;
   z-index: -1;
 }
@@ -31,7 +31,7 @@
   align-items: center;
   position: relative;
   padding-block-start: 1.125rem;
-  padding-block-end: 40rem;
+  padding-block-end: 19.5rem;
 }
 
 .hero__brand {
@@ -92,6 +92,12 @@
   margin-block-start: 1.875rem;
 }
 
+@media (min-width: 32rem) {
+  .hero::after {
+    background-image: url("../../assets/images/decor/background-chess-desk.svg");
+  }
+}
+
 @media (min-width: 48rem) {
   .hero {
     background-image: image-set(
@@ -107,7 +113,6 @@
     inset-block-start: 0;
     inline-size: min(var(--hero-overlay-desktop-width), 119.1069vw);
     block-size: 100%;
-    background-image: url("../../assets/images/decor/background-chess-desk.svg");
     background-position: center bottom -3.125rem;
     background-repeat: no-repeat;
     background-size: 100% auto;
@@ -143,6 +148,7 @@
   .hero__description {
     max-inline-size: 33.875rem;
     margin-block-start: 1.5rem;
+    text-align: center;
     font-size: 1.125rem;
     line-height: 1.3;
   }
