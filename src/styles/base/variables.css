@@ -1,10 +1,12 @@
 :root {
-  --color-page-bg: #e9ded4;
+  --color-page-bg: #ffffff;
   --color-surface: #f6f1e8;
   --color-text-primary: #313131;
   --color-text-secondary: #595653;
   --color-text-inverse: #ffffff;
   --color-accent: #fbce51;
+  --color-running-line-bg: #f54932;
+  --color-running-line-text: #ffffff;
   --color-button-dark: #1f1f1f;
   --color-button-dark-hover: #fbce51;
   --color-button-light-border: #1f1f1f;
