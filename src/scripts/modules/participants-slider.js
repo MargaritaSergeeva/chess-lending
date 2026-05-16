@@ -12,16 +12,17 @@ function getItemsPerView() {
 
 export function initParticipantsSlider() {
   const root = document.querySelector("[data-participants-slider]");
+  const scope = root?.closest(".participants__container") ?? root;
 
-  if (!root) {
+  if (!root || !scope) {
     return;
   }
 
   const track = root.querySelector("[data-participants-track]");
-  const prevButton = document.querySelector("[data-participants-prev]");
-  const nextButton = document.querySelector("[data-participants-next]");
-  const currentElement = document.querySelector("[data-participants-current]");
-  const totalElement = document.querySelector("[data-participants-total]");
+  const prevButton = scope.querySelector("[data-participants-prev]");
+  const nextButton = scope.querySelector("[data-participants-next]");
+  const currentElement = scope.querySelector("[data-participants-current]");
+  const totalElement = scope.querySelector("[data-participants-total]");
   const slides = Array.from(track?.children ?? []);
 
   if (
