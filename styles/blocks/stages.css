@@ -1,1 +1,235 @@
+.stages {
+  padding-top: 3rem;
+  padding-bottom: 7.5rem;
+}
 
+.stages__title {
+  margin: 0;
+  max-width: 50rem;
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 400;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.stages__title-note {
+  display: block;
+  max-width: 18rem;
+  margin-top: 0.75rem;
+  color: var(--color-link-accent);
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.2;
+  text-transform: none;
+}
+
+.stages__slider {
+  position: relative;
+  margin-top: 9.25rem;
+}
+
+.stages__slider::after {
+  content: "";
+  position: absolute;
+  top: -7.95rem;
+  right: 0;
+  width: 21rem;
+  aspect-ratio: 335 / 182;
+  background-image: image-set(
+    url("../../assets/images/decor/plain-mob.png") 1x,
+    url("../../assets/images/decor/plain-mob-2x.png") 2x
+  );
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.stages__viewport {
+  overflow: hidden;
+}
+
+.stages__track {
+  display: flex;
+  gap: 1.25rem;
+  transition: transform 320ms ease;
+  will-change: transform;
+}
+
+.stages__slide {
+  flex: 0 0 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  padding: 4rem 2.5rem 2.125rem 1.25rem;
+  background-color: var(--color-surface);
+  background-image: image-set(
+    url("../../assets/images/decor/background-hero.png") 1x,
+    url("../../assets/images/decor/background-hero-2x.png") 2x
+  );
+  background-position: center;
+  background-size: cover;
+}
+
+.stages__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.stages__number {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: var(--color-text-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.stages__text {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+}
+
+.stages__controls {
+  margin-top: 2.6rem;
+}
+
+@media (min-width: 31.25rem) {
+  .stages__slider {
+    margin-top: 3.25rem;
+  }
+}
+
+@media (min-width: 75rem) {
+  .stages {
+    padding-top: 6rem;
+    padding-bottom: 12.5rem;
+  }
+
+  .stages__header {
+    position: relative;
+  }
+
+  .stages__title {
+    max-width: 50.375rem;
+    font-size: 3.375rem;
+    line-height: 1.2;
+  }
+
+  .stages__title-note {
+    display: inline-block;
+    max-width: 17.5rem;
+    margin-top: 0;
+    margin-left: 1.15rem;
+    font-size: 1.25rem;
+    vertical-align: baseline;
+  }
+
+  .stages__slider {
+    margin-top: 3.4rem;
+  }
+
+  .stages__slider::after {
+    top: auto;
+    right: -4rem;
+    bottom: 0;
+    left: auto;
+    width: 25rem;
+    aspect-ratio: 401 / 235;
+    background-image: image-set(
+      url("../../assets/images/decor/plain.png") 1x,
+      url("../../assets/images/decor/plain-2x.png") 2x
+    );
+  }
+
+  .stages__viewport {
+    overflow: visible;
+  }
+
+  .stages__track {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-areas:
+      "top top tall"
+      "middle middle tall"
+      "bottom-left bottom-wide bottom-wide";
+    gap: 1.25rem;
+    transform: none !important;
+    will-change: auto;
+  }
+
+  .stages__slide {
+    padding: 0;
+  }
+
+  .stages__slide--top {
+    grid-area: top;
+    background-image: none;
+    background-color: transparent;
+  }
+
+  .stages__slide--tall {
+    padding: 1.25rem;
+    padding-right: 3rem;
+    grid-area: tall;
+  }
+
+  .stages__slide--middle {
+    grid-area: middle;
+  }
+
+  .stages__slide--bottom-left {
+    padding: 1.25rem;
+    grid-area: bottom-left;
+  }
+
+  .stages__slide--bottom-wide {
+    grid-area: bottom-wide;
+    padding: 1.25rem;
+    padding-right: 20.5rem;
+  }
+
+  .stages__slide--split {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    padding: 0;
+    background: none;
+  }
+
+  .stages__slide--middle .stages__item:last-child {
+    padding-right: 6rem;
+  }
+
+  .stages__slide .stages__text {
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+
+  .stages__slide--split .stages__item {
+    padding: 1.25rem;
+    background-color: var(--color-surface);
+    background-image: image-set(
+      url("../../assets/images/decor/background-hero.png") 1x,
+      url("../../assets/images/decor/background-hero-2x.png") 2x
+    );
+    background-position: center;
+    background-size: auto;
+  }
+
+  .stages__controls {
+    display: none;
+  }
+}
