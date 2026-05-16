@@ -1,6 +1,6 @@
 .support {
   padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-bottom: 2.4rem;
 }
 
 .support__title {
@@ -42,13 +42,13 @@
 @media (min-width: 60rem) {
   .support {
     padding-top: 6.5rem;
-    padding-bottom: 4rem;
+    padding-bottom: 2.3rem;
   }
 
   .support__title {
     position: relative;
     min-height: 15.625rem;
-    padding-right: 32.625rem;
+    padding-right: 42%;
     font-size: 2.25rem;
     line-height: 1.35;
   }
