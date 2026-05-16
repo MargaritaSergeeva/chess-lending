@@ -4,7 +4,6 @@
 
 .page__scale-wrap {
   width: 100%;
-  overflow: clip;
 }
 
 .page__scale-body {
@@ -13,12 +12,14 @@
 
 @media (max-width: 23.4375rem) {
   .page__scale-wrap {
-    height: calc(var(--hero-mobile-min-height) * 100vw / 375);
+    position: relative;
+    overflow: hidden;
+    height: var(--page-scale-height, auto);
   }
 
   .page__scale-body {
     width: 23.4375rem;
-    transform: scale(calc(100vw / 375));
+    transform: scale(var(--page-scale, 1));
     transform-origin: top left;
   }
 }

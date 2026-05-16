@@ -15,7 +15,6 @@
 
 .stages__title-note {
   display: block;
-  max-width: 18rem;
   margin-top: 0.75rem;
   color: var(--color-link-accent);
   font-family: var(--font-body);
@@ -63,7 +62,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
-  padding: 4rem 2.5rem 2.125rem 1.25rem;
+  padding: 4rem 1.5rem 2.125rem 1.25rem;
   background-color: var(--color-surface);
   background-image: image-set(
     url("../../assets/images/decor/background-hero.webp") 1x,
@@ -132,7 +131,7 @@
     display: inline-block;
     max-width: 17.5rem;
     margin-top: 0;
-    margin-left: 1.15rem;
+    margin-left: 1rem;
     font-size: 1.25rem;
     vertical-align: baseline;
   }
@@ -182,7 +181,7 @@
 
   .stages__slide--tall {
     padding: 1.25rem;
-    padding-right: 3rem;
+    padding-right: 2rem;
     grid-area: tall;
   }
 
@@ -198,7 +197,7 @@
   .stages__slide--bottom-wide {
     grid-area: bottom-wide;
     padding: 1.25rem;
-    padding-right: 20.5rem;
+    padding-right: 19rem;
   }
 
   .stages__slide--split {
