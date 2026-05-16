@@ -16,6 +16,7 @@
   border-radius: 50%;
   background-color: #313131;
   color: var(--color-text-inverse);
+  cursor: pointer;
   transition:
     background-color var(--transition-duration) var(--transition-easing),
     opacity var(--transition-duration) var(--transition-easing);
