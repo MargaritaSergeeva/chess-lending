@@ -37,8 +37,8 @@
   width: 21rem;
   aspect-ratio: 335 / 182;
   background-image: image-set(
-    url("../../assets/images/decor/plain-mob.png") 1x,
-    url("../../assets/images/decor/plain-mob-2x.png") 2x
+    url("../../assets/images/decor/plain-mob.webp") 1x,
+    url("../../assets/images/decor/plain-mob-2x.webp") 2x
   );
   background-repeat: no-repeat;
   background-position: center;
@@ -66,8 +66,8 @@
   padding: 4rem 2.5rem 2.125rem 1.25rem;
   background-color: var(--color-surface);
   background-image: image-set(
-    url("../../assets/images/decor/background-hero.png") 1x,
-    url("../../assets/images/decor/background-hero-2x.png") 2x
+    url("../../assets/images/decor/background-hero.webp") 1x,
+    url("../../assets/images/decor/background-hero-2x.webp") 2x
   );
   background-position: center;
   background-size: cover;
@@ -149,8 +149,8 @@
     width: 25rem;
     aspect-ratio: 401 / 235;
     background-image: image-set(
-      url("../../assets/images/decor/plain.png") 1x,
-      url("../../assets/images/decor/plain-2x.png") 2x
+      url("../../assets/images/decor/plain.webp") 1x,
+      url("../../assets/images/decor/plain-2x.webp") 2x
     );
   }
 
@@ -222,8 +222,8 @@
     padding: 1.25rem;
     background-color: var(--color-surface);
     background-image: image-set(
-      url("../../assets/images/decor/background-hero.png") 1x,
-      url("../../assets/images/decor/background-hero-2x.png") 2x
+      url("../../assets/images/decor/background-hero.webp") 1x,
+      url("../../assets/images/decor/background-hero-2x.webp") 2x
     );
     background-position: center;
     background-size: auto;

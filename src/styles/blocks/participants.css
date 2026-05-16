@@ -110,7 +110,7 @@
 @media (min-width: 62.5625rem) {
   .participants {
     padding-top: 6.25rem;
-    padding-bottom: 8.75rem;
+    padding-bottom: 7.5rem;
   }
 
   .participants__container {
@@ -145,7 +145,7 @@
   }
 
   .participants__status {
-    min-width: 2rem;
+    min-width: 1.8rem;
     gap: 0.4rem;
     font-size: 1rem;
   }
