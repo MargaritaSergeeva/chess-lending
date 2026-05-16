@@ -1,6 +1,6 @@
 .stages {
   padding-top: 3rem;
-  padding-bottom: 7.5rem;
+  padding-bottom: 3rem;
 }
 
 .stages__title {
@@ -115,7 +115,7 @@
 @media (min-width: 75rem) {
   .stages {
     padding-top: 6rem;
-    padding-bottom: 12.5rem;
+    padding-bottom: 6.25rem;
   }
 
   .stages__header {
