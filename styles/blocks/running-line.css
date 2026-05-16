@@ -1,10 +1,13 @@
 .running-line {
   position: relative;
-  margin-top: -1.3rem;
   z-index: 1;
   background-color: var(--color-running-line-bg);
   color: var(--color-running-line-text);
   overflow: hidden;
+}
+
+.running-line--hero {
+  margin-top: -1.3rem;
 }
 
 .running-line__viewport {
@@ -66,15 +69,15 @@
 }
 
 @media (min-width: 48rem) {
-  .running-line {
+  .running-line--hero {
     margin-top: 0;
   }
 
   .running-line__content {
     gap: 0.875rem;
-    padding-top: 1rem;
+    padding-top: 1.125rem;
     padding-right: 0.875rem;
-    padding-bottom: 1rem;
+    padding-bottom: 1.125rem;
   }
 
   .running-line__text {
