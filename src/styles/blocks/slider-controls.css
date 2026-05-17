@@ -27,6 +27,11 @@
   cursor: default;
 }
 
+.slider-controls__button:focus-visible {
+  outline: 0.1875rem solid var(--color-accent);
+  outline-offset: 0.1875rem;
+}
+
 .slider-controls__icon {
   width: 0.625rem;
   height: 0.625rem;
@@ -63,6 +68,11 @@
 
 .slider-controls__dot.is-active {
   background-color: #313131;
+}
+
+.slider-controls__dot:focus-visible {
+  outline: 0.125rem solid var(--color-accent);
+  outline-offset: 0.1875rem;
 }
 
 @media (hover: hover) {
