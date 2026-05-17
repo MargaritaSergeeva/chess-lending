@@ -1,3 +1,5 @@
+const AUTOPLAY_DELAY = 4000;
+
 function getItemsPerView() {
   if (window.innerWidth <= 500) {
     return 1;
@@ -23,7 +25,7 @@ export function initParticipantsSlider() {
   const nextButton = scope.querySelector("[data-participants-next]");
   const currentElement = scope.querySelector("[data-participants-current]");
   const totalElement = scope.querySelector("[data-participants-total]");
-  const slides = Array.from(track?.children ?? []);
+  const initialSlides = Array.from(track?.children ?? []);
 
   if (
     !track ||
@@ -31,60 +33,190 @@ export function initParticipantsSlider() {
     !nextButton ||
     !currentElement ||
     !totalElement ||
-    slides.length === 0
+    initialSlides.length === 0
   ) {
     return;
   }
 
-  let currentIndex = 0;
+  initialSlides.forEach((slide, index) => {
+    if (slide instanceof HTMLElement) {
+      slide.dataset.realIndex = String(index);
+    }
+  });
 
-  totalElement.textContent = String(slides.length);
+  let itemsPerView = getItemsPerView();
+  let autoplayId = 0;
+  let isAnimating = false;
+  let cancelAnimationCompletion = null;
 
-  function getSliderState() {
-    const itemsPerView = getItemsPerView();
+  totalElement.textContent = String(initialSlides.length);
 
-    return {
-      itemsPerView,
-      maxIndex: Math.max(0, slides.length - itemsPerView),
-    };
+  function getSlides() {
+    return Array.from(track.children);
   }
 
-  function update() {
-    const { itemsPerView, maxIndex } = getSliderState();
+  function getGap() {
+    return Number.parseFloat(getComputedStyle(track).gap) || 0;
+  }
 
-    currentIndex = Math.min(currentIndex, maxIndex);
+  function getSlideWidth() {
+    const firstSlide = track.children[0];
 
-    const gap = Number.parseFloat(getComputedStyle(track).gap) || 0;
-    const slideWidth = slides[0].getBoundingClientRect().width;
-    const offset = currentIndex * (slideWidth + gap);
-    const visibleLastSlide = Math.min(slides.length, currentIndex + itemsPerView);
+    if (!(firstSlide instanceof HTMLElement)) {
+      return 0;
+    }
 
-    track.style.transform = `translateX(-${offset}px)`;
-    prevButton.disabled = currentIndex === 0;
-    nextButton.disabled = currentIndex === maxIndex;
+    return firstSlide.getBoundingClientRect().width;
+  }
+
+  function getStepOffset() {
+    return itemsPerView * (getSlideWidth() + getGap());
+  }
+
+  function setTrackPosition(offset, withTransition = true) {
+    track.style.transition = withTransition ? "" : "none";
+    track.style.transform = `translateX(${offset}px)`;
+  }
+
+  function commitInstantPosition(offset) {
+    setTrackPosition(offset, false);
+    void track.offsetHeight;
+    track.style.transition = "";
+  }
+
+  function syncStatus() {
+    const firstSlide = track.children[0];
+
+    if (!(firstSlide instanceof HTMLElement)) {
+      return;
+    }
+
+    const startIndex = Number(firstSlide.dataset.realIndex ?? 0);
+    const visibleLastSlide = Math.min(initialSlides.length, startIndex + itemsPerView);
+
     currentElement.textContent = String(visibleLastSlide);
   }
 
-  prevButton.addEventListener("click", () => {
-    if (currentIndex === 0) {
+  function restoreCanonicalOrder(startIndex = 0) {
+    const orderedSlides = [
+      ...initialSlides.slice(startIndex),
+      ...initialSlides.slice(0, startIndex),
+    ];
+
+    track.replaceChildren(...orderedSlides);
+    commitInstantPosition(0);
+    syncStatus();
+  }
+
+  function finishAnimation(callback) {
+    cancelAnimationCompletion?.();
+
+    const handleTransitionEnd = (event) => {
+      if (event.target !== track || event.propertyName !== "transform") {
+        return;
+      }
+
+      track.removeEventListener("transitionend", handleTransitionEnd);
+      cancelAnimationCompletion = null;
+      callback();
+      isAnimating = false;
+    };
+
+    cancelAnimationCompletion = () => {
+      track.removeEventListener("transitionend", handleTransitionEnd);
+      cancelAnimationCompletion = null;
+    };
+
+    track.addEventListener("transitionend", handleTransitionEnd);
+  }
+
+  function restartAutoplay() {
+    window.clearInterval(autoplayId);
+    autoplayId = window.setInterval(() => {
+      goNext();
+    }, AUTOPLAY_DELAY);
+  }
+
+  function goNext() {
+    if (isAnimating) {
       return;
     }
 
-    currentIndex = Math.max(0, currentIndex - getItemsPerView());
-    update();
+    if (getStepOffset() === 0) {
+      return;
+    }
+
+    isAnimating = true;
+    setTrackPosition(-getStepOffset());
+
+    finishAnimation(() => {
+      const slides = getSlides();
+      const movedSlides = slides.slice(0, itemsPerView);
+
+      movedSlides.forEach((slide) => {
+        track.append(slide);
+      });
+
+      commitInstantPosition(0);
+      syncStatus();
+    });
+  }
+
+  function goPrev() {
+    if (isAnimating) {
+      return;
+    }
+
+    if (getStepOffset() === 0) {
+      return;
+    }
+
+    isAnimating = true;
+
+    const slides = getSlides();
+    const movedSlides = slides.slice(-itemsPerView);
+
+    movedSlides.forEach((slide) => {
+      track.prepend(slide);
+    });
+
+    commitInstantPosition(-getStepOffset());
+
+    requestAnimationFrame(() => {
+      setTrackPosition(0);
+    });
+
+    finishAnimation(() => {
+      syncStatus();
+    });
+  }
+
+  prevButton.addEventListener("click", () => {
+    goPrev();
+    restartAutoplay();
   });
 
   nextButton.addEventListener("click", () => {
-    const { itemsPerView, maxIndex } = getSliderState();
-
-    if (currentIndex >= maxIndex) {
-      return;
-    }
-
-    currentIndex = Math.min(maxIndex, currentIndex + itemsPerView);
-    update();
+    goNext();
+    restartAutoplay();
   });
 
-  window.addEventListener("resize", update);
-  update();
+  window.addEventListener("resize", () => {
+    const firstSlide = track.children[0];
+    const currentStartIndex = firstSlide instanceof HTMLElement
+      ? Number(firstSlide.dataset.realIndex ?? 0)
+      : 0;
+
+    itemsPerView = getItemsPerView();
+    const normalizedStartIndex =
+      Math.floor(currentStartIndex / itemsPerView) * itemsPerView;
+
+    isAnimating = false;
+    cancelAnimationCompletion?.();
+    restoreCanonicalOrder(normalizedStartIndex);
+  });
+
+  itemsPerView = getItemsPerView();
+  restoreCanonicalOrder(0);
+  restartAutoplay();
 }
