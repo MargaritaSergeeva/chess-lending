@@ -19,7 +19,10 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url("../../assets/images/decor/background-chess-mob.svg");
+  background-image: image-set(
+    url("../../assets/images/decor/background-chess-mob.webp") 1x,
+    url("../../assets/images/decor/background-chess-mob-2x.webp") 2x
+  );
   background-position: center bottom 1rem;
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -96,7 +99,10 @@
 
 @media (min-width: 32rem) {
   .hero::after {
-    background-image: url("../../assets/images/decor/background-chess-desk.svg");
+    background-image: image-set(
+      url("../../assets/images/decor/background-chess-desk.webp") 1x,
+      url("../../assets/images/decor/background-chess-desk-2x.webp") 2x
+    );
   }
 }
 
