@@ -105,7 +105,7 @@
   margin-top: 2.6rem;
 }
 
-@media (min-width: 31.25rem) {
+@media (min-width: 53.125rem) {
   .stages__slider {
     margin-top: 3.25rem;
   }

@@ -1,4 +1,5 @@
 const AUTOPLAY_DELAY = 4000;
+const LIVE_POLITE_RESET_DELAY = 250;
 
 function getItemsPerView() {
   if (window.innerWidth <= 500) {
@@ -25,6 +26,7 @@ export function initParticipantsSlider() {
   const nextButton = scope.querySelector("[data-participants-next]");
   const currentElement = scope.querySelector("[data-participants-current]");
   const totalElement = scope.querySelector("[data-participants-total]");
+  const statusElement = currentElement.closest(".participants__status");
   const initialSlides = Array.from(track?.children ?? []);
 
   if (
@@ -32,6 +34,7 @@ export function initParticipantsSlider() {
     !prevButton ||
     !nextButton ||
     !currentElement ||
+    !(statusElement instanceof HTMLElement) ||
     !totalElement ||
     initialSlides.length === 0
   ) {
@@ -46,10 +49,13 @@ export function initParticipantsSlider() {
 
   let itemsPerView = getItemsPerView();
   let autoplayId = 0;
+  let liveResetId = 0;
   let isAnimating = false;
   let cancelAnimationCompletion = null;
+  const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   totalElement.textContent = String(initialSlides.length);
+  statusElement.setAttribute("aria-live", "off");
 
   function getSlides() {
     return Array.from(track.children);
@@ -108,6 +114,20 @@ export function initParticipantsSlider() {
     syncStatus();
   }
 
+  function clearLiveReset() {
+    window.clearTimeout(liveResetId);
+    liveResetId = 0;
+  }
+
+  function announceStatus() {
+    statusElement.setAttribute("aria-live", "polite");
+    clearLiveReset();
+    liveResetId = window.setTimeout(() => {
+      statusElement.setAttribute("aria-live", "off");
+      liveResetId = 0;
+    }, LIVE_POLITE_RESET_DELAY);
+  }
+
   function finishAnimation(callback) {
     cancelAnimationCompletion?.();
 
@@ -131,19 +151,28 @@ export function initParticipantsSlider() {
   }
 
   function restartAutoplay() {
+    if (reducedMotionQuery.matches) {
+      return;
+    }
+
     window.clearInterval(autoplayId);
     autoplayId = window.setInterval(() => {
       goNext();
     }, AUTOPLAY_DELAY);
   }
 
+  function stopAutoplay() {
+    window.clearInterval(autoplayId);
+    autoplayId = 0;
+  }
+
   function goNext() {
     if (isAnimating) {
-      return;
+      return false;
     }
 
     if (getStepOffset() === 0) {
-      return;
+      return false;
     }
 
     isAnimating = true;
@@ -160,15 +189,17 @@ export function initParticipantsSlider() {
       commitInstantPosition(0);
       syncStatus();
     });
+
+    return true;
   }
 
   function goPrev() {
     if (isAnimating) {
-      return;
+      return false;
     }
 
     if (getStepOffset() === 0) {
-      return;
+      return false;
     }
 
     isAnimating = true;
@@ -189,15 +220,58 @@ export function initParticipantsSlider() {
     finishAnimation(() => {
       syncStatus();
     });
+
+    return true;
   }
 
   prevButton.addEventListener("click", () => {
-    goPrev();
+    const didMove = goPrev();
+
+    if (!didMove) {
+      return;
+    }
+
+    announceStatus();
     restartAutoplay();
   });
 
   nextButton.addEventListener("click", () => {
-    goNext();
+    const didMove = goNext();
+
+    if (!didMove) {
+      return;
+    }
+
+    announceStatus();
+    restartAutoplay();
+  });
+
+  scope.addEventListener("mouseenter", stopAutoplay);
+  scope.addEventListener("mouseleave", restartAutoplay);
+  scope.addEventListener("focusin", stopAutoplay);
+  scope.addEventListener("focusout", (event) => {
+    if (event.relatedTarget instanceof Node && scope.contains(event.relatedTarget)) {
+      return;
+    }
+
+    restartAutoplay();
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopAutoplay();
+      return;
+    }
+
+    restartAutoplay();
+  });
+
+  reducedMotionQuery.addEventListener("change", () => {
+    if (reducedMotionQuery.matches) {
+      stopAutoplay();
+      return;
+    }
+
     restartAutoplay();
   });
 
@@ -213,6 +287,8 @@ export function initParticipantsSlider() {
 
     isAnimating = false;
     cancelAnimationCompletion?.();
+    clearLiveReset();
+    statusElement.setAttribute("aria-live", "off");
     restoreCanonicalOrder(normalizedStartIndex);
   });
 
