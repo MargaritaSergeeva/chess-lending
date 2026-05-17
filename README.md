@@ -42,6 +42,6 @@ npx serve src
 
 ## Ссылка на проект
 
-Live demo: `добавить ссылку после деплоя`
+Live demo: [margaritasergeeva.github.io/chess-lending](https://margaritasergeeva.github.io/chess-lending/)
 
-Repository: `добавить ссылку на github`
+Repository: [github.com/MargaritaSergeeva/chess-lending](https://github.com/MargaritaSergeeva/chess-lending)
