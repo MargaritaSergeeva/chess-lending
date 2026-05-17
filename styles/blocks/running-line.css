@@ -10,10 +10,6 @@
   margin-top: -1.3rem;
 }
 
-.running-line__viewport {
-  overflow: hidden;
-}
-
 .running-line__track {
   display: flex;
   width: max-content;

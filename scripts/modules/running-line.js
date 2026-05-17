@@ -1,12 +1,16 @@
 export function initRunningLines() {
-  const template = document.querySelector("#running-line-template");
-  const roots = document.querySelectorAll("[data-running-line-root]");
+  const source = document.querySelector("[data-running-line-source]");
+  const targets = document.querySelectorAll("[data-running-line-target]");
 
-  if (!(template instanceof HTMLTemplateElement) || roots.length === 0) {
+  if (!(source instanceof HTMLElement) || targets.length === 0) {
     return;
   }
 
-  roots.forEach((root) => {
-    root.replaceChildren(template.content.cloneNode(true));
+  targets.forEach((target) => {
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+
+    target.replaceChildren(...Array.from(source.children).map((child) => child.cloneNode(true)));
   });
 }
