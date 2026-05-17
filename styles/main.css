@@ -5,6 +5,7 @@
 @import url("./base/typography.css");
 
 @import url("./utils/container.css");
+@import url("./utils/reveal.css");
 @import url("./utils/visually-hidden.css");
 
 @import url("./blocks/page.css");
