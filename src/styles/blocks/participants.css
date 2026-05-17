@@ -1,15 +1,6 @@
 .participants {
-  padding-top: 3.8rem;
-  padding-bottom: 6.25rem;
-}
-
-.participants__title {
-  margin: 0;
-  font-family: var(--font-heading);
-  font-size: 2.25rem;
-  font-weight: 400;
-  line-height: 1.1;
-  text-transform: uppercase;
+  padding-top: calc(var(--space-between-stages-participants-mobile) / 2);
+  padding-bottom: var(--space-before-footer-mobile);
 }
 
 .participants__slider {
@@ -48,8 +39,8 @@
 
 @media (min-width: 62.5625rem) {
   .participants {
-    padding-top: 6.25rem;
-    padding-bottom: 7.5rem;
+    padding-top: calc(var(--space-between-stages-participants-desktop) / 2);
+    padding-bottom: var(--space-before-footer-desktop);
   }
 
   .participants__container {

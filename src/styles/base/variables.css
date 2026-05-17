@@ -25,6 +25,18 @@
   --hero-overlay-desktop-width: 101.6875rem;
   --hero-overlay-mobile-height: 25.6875rem;
 
+  --space-after-hero-mobile: 3rem;
+  --space-between-support-event-mobile: 2.5rem;
+  --space-between-event-stages-mobile: 7.5rem;
+  --space-between-stages-participants-mobile: 6.75rem;
+  --space-before-footer-mobile: 6.25rem;
+
+  --space-after-hero-desktop: 6.6rem;
+  --space-between-support-event-desktop: 2.25rem;
+  --space-between-event-stages-desktop: 12.25rem;
+  --space-between-stages-participants-desktop: 12.5rem;
+  --space-before-footer-desktop: 7.5rem;
+
   --button-hero-inline-size: 16.5rem;
   --button-radius-pill: 624.9375rem;
   --button-border-width: 0.125rem;
