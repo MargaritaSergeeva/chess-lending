@@ -1,26 +1,15 @@
 .stages {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-top: calc(var(--space-between-event-stages-mobile) / 2);
+  padding-bottom: calc(var(--space-between-stages-participants-mobile) / 2);
 }
 
 .stages__title {
-  margin: 0;
   max-width: 50rem;
-  font-family: var(--font-heading);
-  font-size: 2.25rem;
-  font-weight: 400;
-  line-height: 1.1;
-  text-transform: uppercase;
 }
 
 .stages__title-note {
   display: block;
   margin-top: 0.75rem;
-  color: var(--color-link-accent);
-  font-family: var(--font-body);
-  font-size: 1.125rem;
-  line-height: 1.2;
-  text-transform: none;
 }
 
 .stages__slider {
@@ -113,8 +102,8 @@
 
 @media (min-width: 75rem) {
   .stages {
-    padding-top: 6rem;
-    padding-bottom: 6.25rem;
+    padding-top: calc(var(--space-between-event-stages-desktop) / 2);
+    padding-bottom: calc(var(--space-between-stages-participants-desktop) / 2);
   }
 
   .stages__header {
@@ -123,8 +112,6 @@
 
   .stages__title {
     max-width: 50.375rem;
-    font-size: 3.375rem;
-    line-height: 1.2;
   }
 
   .stages__title-note {
@@ -132,7 +119,6 @@
     max-width: 17.5rem;
     margin-top: 0;
     margin-left: 1rem;
-    font-size: 1.25rem;
     vertical-align: baseline;
   }
 

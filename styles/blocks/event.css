@@ -1,6 +1,6 @@
 .event {
-  padding-top: 0.125rem;
-  padding-bottom: 4.5rem;
+  padding-top: calc(var(--space-between-support-event-mobile) / 2);
+  padding-bottom: calc(var(--space-between-event-stages-mobile) / 2);
 }
 
 .event__layout {
@@ -109,15 +109,12 @@
 
 .event__note {
   margin-top: 1.8rem;
-  color: var(--color-link-accent);
-  font-size: 1.125rem;
-  line-height: 1.2;
 }
 
 @media (min-width: 75rem) {
   .event {
-    padding-top: 0;
-    padding-bottom: 6.25rem;
+    padding-top: calc(var(--space-between-support-event-desktop) / 2);
+    padding-bottom: calc(var(--space-between-event-stages-desktop) / 2);
   }
 
   .event__layout {
@@ -186,6 +183,5 @@
 
   .event__note {
     margin-top: 2.875rem;
-    font-size: 1.25rem;
   }
 }

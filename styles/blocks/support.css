@@ -1,6 +1,6 @@
 .support {
-  padding-top: 3rem;
-  padding-bottom: 2.4rem;
+  padding-top: var(--space-after-hero-mobile);
+  padding-bottom: calc(var(--space-between-support-event-mobile) / 2);
 }
 
 .support__title {
@@ -41,8 +41,8 @@
 
 @media (min-width: 60rem) {
   .support {
-    padding-top: 6.6rem;
-    padding-bottom: 2.3rem;
+    padding-top: var(--space-after-hero-desktop);
+    padding-bottom: calc(var(--space-between-support-event-desktop) / 2);
   }
 
   .support__title {
